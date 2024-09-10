@@ -1,8 +1,15 @@
 import { Project } from '@/types'
-const SPACE = process.env.CONTENTFUL_SPACE_ID
-const TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN
+
+function getEnvVariable(name: string): string {
+  if (typeof Netlify !== 'undefined' && Netlify.env) {
+    return Netlify.env.get(name) || ''
+  }
+  return process.env[name] || ''
+}
 
 async function apiCall(query: string) {
+  const SPACE = getEnvVariable('CONTENTFUL_SPACE_ID')
+  const TOKEN = getEnvVariable('CONTENTFUL_ACCESS_TOKEN')
   const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${SPACE}`
   const options = {
     method: 'POST',
