@@ -14,7 +14,7 @@ export default function Index() {
   const items = useLoaderData<typeof loader>()
 
   return (
-    <div className="mx-auto space-y-[8.5vw] overflow-hidden px-[min(4vw,4em)] pb-10">
+    <div className="mx-auto space-y-[8.5vw] overflow-hidden px-[min(4vw,4em)] pb-10 antialiased">
       <Hero />
       <List items={items} />
       <Footer />
