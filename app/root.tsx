@@ -85,6 +85,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        {/* Google Analytics Script */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_TRACKING_ID}`}
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: /* HTML */ `
+              window.dataLayer = window.dataLayer || []; function
+              gtag(){dataLayer.push(arguments);} gtag('js', new Date());
+              gtag('config', '${import.meta.env.VITE_GA_TRACKING_ID}');
+            `,
+          }}
+        />
       </head>
       <body className="font-sans">
         {children}
